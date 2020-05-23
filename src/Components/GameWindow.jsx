@@ -1,5 +1,11 @@
+import { css } from "@emotion/core";
+
 import React, { Component } from "react";
 import _ from "lodash";
+
+const base = css`
+  background-color: pink;
+`;
 
 export default class GameWindow extends Component {
   constructor() {
@@ -7,6 +13,6 @@ export default class GameWindow extends Component {
   }
 
   render() {
-    return <div className="app"></div>;
+    return <div css={base}>Some text example</div>;
   }
 }
