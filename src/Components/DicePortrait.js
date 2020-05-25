@@ -14,7 +14,7 @@ const dice_portrait = css`
   margin: 2px;
   padding: 2px;
 
-  width: 200px;
+  width: max-width;
   height: 75px;
 `;
 

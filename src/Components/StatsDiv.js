@@ -15,23 +15,12 @@ const stats_div = css`
   height: 20px;
 `;
 
-const statsMock = [
-  [
-    { label: "ATK", value: 10 },
-    { label: "DEF", value: 5 },
-  ],
-  [
-    { label: "ATK", value: 10 },
-    { label: "DEF", value: 5 },
-  ],
-];
-
 export function StatsDiv(props) {
-  const { portraitNumber } = props;
+  const { portraitNumber, statsMock } = props;
 
   return (
     <div css={stats_div}>
-      {statsMock[portraitNumber - 1].map(({ label, value }) => (
+      {statsMock[portraitNumber - 1].stats.map(({ label, value }) => (
         <StatsLabel key={_.uniqueId()} {...props} label={label} value={value} />
       ))}
     </div>

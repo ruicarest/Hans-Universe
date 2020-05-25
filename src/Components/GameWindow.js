@@ -4,8 +4,29 @@ import React, { Component } from "react";
 import _ from "lodash";
 
 import { ActorPortrait } from "./ActorPortrait";
-import { DicePortrait } from "./DicePortrait";
+import { MidSection } from "./MidSection";
 import { DiceDisplay } from "./DiceDisplay";
+
+const statsMock = [
+  {
+    playerNumber: 1,
+    HP: 100,
+    MaxHP: 200,
+    stats: [
+      { label: "ATK", value: 10 },
+      { label: "DEF", value: 5 },
+    ],
+  },
+  {
+    playerNumber: 2,
+    HP: 120,
+    MaxHP: 180,
+    stats: [
+      { label: "ATK", value: 8 },
+      { label: "DEF", value: 3 },
+    ],
+  },
+];
 
 const battle = css`
   display: flex;
@@ -22,11 +43,11 @@ export default class GameWindow extends Component {
     return (
       <>
         <div css={battle}>
-          <ActorPortrait portraitNumber={1} />
-          <DicePortrait />
-          <ActorPortrait portraitNumber={2} />
+          <ActorPortrait statsMock={statsMock} portraitNumber={1} />
+          <MidSection statsMock={statsMock} />
+          <ActorPortrait statsMock={statsMock} portraitNumber={2} />
         </div>
-        <DiceDisplay />
+        <DiceDisplay statsMock={statsMock} />
       </>
     );
   }
