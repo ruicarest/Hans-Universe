@@ -10,7 +10,5 @@ const dice_image = css`
 export function DiceImage(props) {
   const { diceNumber } = props;
 
-  return (
-    <img css={dice_image} src={`./public/images/Dice/${diceNumber}.jpg`} />
-  );
+  return <img css={dice_image} src={`./images/Dice/${diceNumber}.jpg`} />;
 }

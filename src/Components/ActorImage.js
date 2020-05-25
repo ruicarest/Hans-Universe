@@ -17,7 +17,7 @@ export function ActorImage(props) {
   return (
     <img
       css={actor_image}
-      src={`./public/images/Actors/solid${portraitNumber}_front.jpg`}
+      src={`./images/Actors/solid${portraitNumber}_front.jpg`}
     />
   );
 }

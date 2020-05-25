@@ -30,6 +30,9 @@ module.exports = {
       template: "./src/index.html",
       filename: "./index.html",
     }),
-    new CopyPlugin([{ from: "public/fonts", to: "fonts" }]),
+    new CopyPlugin([
+      { from: "images/Dice", to: "images/Dice" },
+      { from: "images/Actors", to: "images/Actors" },
+    ]),
   ],
 };
