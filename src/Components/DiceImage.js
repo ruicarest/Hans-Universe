@@ -7,8 +7,40 @@ const dice_image = css`
   max-height: 100%;
 `;
 
-export function DiceImage(props) {
-  const { diceNumber } = props;
+export class DiceImage extends React.Component {
+  constructor(props) {
+    super(props);
 
-  return <img css={dice_image} src={`./images/Dice/${diceNumber}.jpg`} />;
+    this.state = {
+      isHovered: false,
+    };
+  }
+
+  handleEnter() {
+    this.setState({
+      isHovered: true,
+    });
+  }
+
+  handleLeave() {
+    this.setState({
+      isHovered: false,
+    });
+  }
+
+  render() {
+    const { diceNumber, label } = this.props;
+
+    return (
+      <>
+        <img
+          css={dice_image}
+          src={`./images/Dice/${diceNumber}.jpg`}
+          onMouseEnter={this.handleEnter.bind(this)}
+          onMouseLeave={this.handleLeave.bind(this)}
+        />
+        {this.state.isHovered ? <div>{label}</div> : <></>}
+      </>
+    );
+  }
 }

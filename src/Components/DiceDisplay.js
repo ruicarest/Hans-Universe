@@ -11,10 +11,10 @@ const dice_display = css`
   flex-direction: row;
   align-items: center;
 
-  border: 5px solid black;
-  padding: 2px;
-  margin-top: 5px;
   background-color: pink;
+  border: 5px solid black;
+  margin-top: 5px;
+  padding: 2px;
 
   width: max-content;
   height: 75px;
@@ -24,7 +24,7 @@ export function DiceDisplay(props) {
   return (
     <div css={dice_display}>
       {imageLoader().map(({ id, src, title, description }) => (
-        <DiceImage key={id} diceNumber={id} />
+        <DiceImage key={id} diceNumber={id} label={description} />
       ))}
     </div>
   );
