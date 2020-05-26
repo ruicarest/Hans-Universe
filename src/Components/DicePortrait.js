@@ -21,8 +21,8 @@ const dice_portrait = css`
 export function DicePortrait(props) {
   return (
     <div css={dice_portrait}>
-      <DiceImage diceNumber={1} />
-      <DiceImage diceNumber={5} />
+      <DiceImage diceNumber={props.statsMock[0].dicePortraitID} isPortrait />
+      <DiceImage diceNumber={props.statsMock[1].dicePortraitID} isPortrait />
     </div>
   );
 }

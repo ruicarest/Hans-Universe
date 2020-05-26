@@ -29,7 +29,7 @@ export class DiceImage extends React.Component {
   }
 
   render() {
-    const { diceNumber, label } = this.props;
+    const { diceNumber, label, isPortrait } = this.props;
 
     return (
       <>
@@ -39,7 +39,8 @@ export class DiceImage extends React.Component {
           onMouseEnter={this.handleEnter.bind(this)}
           onMouseLeave={this.handleLeave.bind(this)}
         />
-        {this.state.isHovered ? <div>{label}</div> : <></>}
+
+        {!isPortrait && this.state.isHovered ? <div>{label}</div> : <></>}
       </>
     );
   }

@@ -12,6 +12,7 @@ const statsMock = [
     playerNumber: 1,
     HP: 100,
     MaxHP: 200,
+    dicePortraitID: 1,
     stats: [
       { label: "ATK", value: 10 },
       { label: "DEF", value: 5 },
@@ -21,6 +22,7 @@ const statsMock = [
     playerNumber: 2,
     HP: 120,
     MaxHP: 180,
+    dicePortraitID: 4,
     stats: [
       { label: "ATK", value: 8 },
       { label: "DEF", value: 3 },
