@@ -23,16 +23,10 @@ const dice_portrait = css`
 export function DicePortrait() {
   return (
     <GameContext.Consumer>
-      {(context) => (
+      {({ playersState }) => (
         <div css={dice_portrait}>
-          <DiceImage
-            diceNumber={context.playersState[0].dicePortraitID}
-            isPortrait
-          />
-          <DiceImage
-            diceNumber={context.playersState[1].dicePortraitID}
-            isPortrait
-          />
+          <DiceImage diceNumber={playersState[0].dicePortraitID} isPortrait />
+          <DiceImage diceNumber={playersState[1].dicePortraitID} isPortrait />
         </div>
       )}
     </GameContext.Consumer>
