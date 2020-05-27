@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 
 import { css } from "@emotion/core";
 
+import GameContext from "../Stores/GameContext";
+
 const actor_image = css`
   max-width: 100%;
   max-height: 100%;
@@ -15,9 +17,15 @@ export function ActorImage(props) {
   useEffect(() => console.log("ActorImage mounted", playerNumber), []);
 
   return (
-    <img
-      css={actor_image}
-      src={`./images/Actors/solid${playerNumber}_front.jpg`}
-    />
+    <GameContext.Consumer>
+      {({ playersState }) => (
+        <img
+          css={actor_image}
+          src={`./images/Actors/solid${
+            playersState[playerNumber - 1].currentActor
+          }_front.jpg`}
+        />
+      )}
+    </GameContext.Consumer>
   );
 }

@@ -8,6 +8,7 @@ import GameContextProvider from "../Stores/GameContextProvider";
 import { ActorPortrait } from "./ActorPortrait";
 import { MidSection } from "./MidSection";
 import { DiceDisplay } from "./DiceDisplay";
+import { ActorsGallery } from "./ActorsGallery";
 
 const battle = css`
   display: flex;
@@ -20,6 +21,10 @@ const battle = css`
 `;
 
 export default class GameWindow extends Component {
+  state = {
+    isDebug: true,
+  };
+
   render() {
     return (
       <GameContextProvider>
@@ -29,6 +34,7 @@ export default class GameWindow extends Component {
           <ActorPortrait playerNumber={2} />
         </div>
         <DiceDisplay />
+        {this.state.isDebug ? <ActorsGallery /> : <></>}
       </GameContextProvider>
     );
   }
