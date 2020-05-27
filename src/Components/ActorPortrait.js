@@ -10,7 +10,7 @@ const actor_portrait = css`
   border: 5px solid black;
   background-color: white;
   width: 200px;
-  height: 300px;
+  height: 325px;
 `;
 
 export function ActorPortrait(props) {
