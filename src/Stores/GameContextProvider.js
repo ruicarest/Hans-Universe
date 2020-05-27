@@ -9,7 +9,7 @@ class GameContextProvider extends Component {
         HP: 100,
         MaxHP: 200,
         dicePortraitID: 1,
-        currentActor: 1,
+        currentActor: 10,
         stats: [
           { label: "ATK", value: 10 },
           { label: "DEF", value: 5 },
@@ -20,7 +20,7 @@ class GameContextProvider extends Component {
         HP: 120,
         MaxHP: 180,
         dicePortraitID: 4,
-        currentActor: 2,
+        currentActor: 5,
         stats: [
           { label: "ATK", value: 8 },
           { label: "DEF", value: 3 },
