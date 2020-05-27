@@ -2,6 +2,8 @@ import React from "react";
 
 import { css } from "@emotion/core";
 
+import GameContext from "../Stores/GameContext";
+
 const hp_bar_container = css`
   border: 5px solid black;
   padding: 2px;
@@ -25,13 +27,21 @@ const top_bar = css`
 `;
 
 export function HPBar(props) {
-  const { playerNumber, statsMock } = props;
-
-  const { HP, MaxHP } = statsMock[playerNumber - 1];
+  const { playerNumber } = props;
 
   return (
-    <div css={[hp_bar_container, playerNumber == 1 ? bottom_bar : top_bar]}>
-      <div css={hp_bar} style={{ width: (HP / MaxHP) * 100 + "%" }}></div>
-    </div>
+    <GameContext.Consumer>
+      {(context) => {
+        const { HP, MaxHP } = context.playersState[playerNumber - 1];
+
+        return (
+          <div
+            css={[hp_bar_container, playerNumber == 1 ? bottom_bar : top_bar]}
+          >
+            <div css={hp_bar} style={{ width: (HP / MaxHP) * 100 + "%" }}></div>
+          </div>
+        );
+      }}
+    </GameContext.Consumer>
   );
 }

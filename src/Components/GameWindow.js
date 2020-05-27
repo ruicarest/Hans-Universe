@@ -3,32 +3,11 @@ import { css } from "@emotion/core";
 import React, { Component } from "react";
 import _ from "lodash";
 
+import GameContextProvider from "../Stores/GameContextProvider";
+
 import { ActorPortrait } from "./ActorPortrait";
 import { MidSection } from "./MidSection";
 import { DiceDisplay } from "./DiceDisplay";
-
-const statsMock = [
-  {
-    playerNumber: 1,
-    HP: 100,
-    MaxHP: 200,
-    dicePortraitID: 1,
-    stats: [
-      { label: "ATK", value: 10 },
-      { label: "DEF", value: 5 },
-    ],
-  },
-  {
-    playerNumber: 2,
-    HP: 120,
-    MaxHP: 180,
-    dicePortraitID: 4,
-    stats: [
-      { label: "ATK", value: 8 },
-      { label: "DEF", value: 3 },
-    ],
-  },
-];
 
 const battle = css`
   display: flex;
@@ -43,14 +22,14 @@ const battle = css`
 export default class GameWindow extends Component {
   render() {
     return (
-      <>
+      <GameContextProvider>
         <div css={battle}>
-          <ActorPortrait statsMock={statsMock} portraitNumber={1} />
-          <MidSection statsMock={statsMock} />
-          <ActorPortrait statsMock={statsMock} portraitNumber={2} />
+          <ActorPortrait playerNumber={1} />
+          <MidSection />
+          <ActorPortrait playerNumber={2} />
         </div>
-        <DiceDisplay statsMock={statsMock} />
-      </>
+        <DiceDisplay />
+      </GameContextProvider>
     );
   }
 }

@@ -9,15 +9,15 @@ const actor_image = css`
 `;
 
 export function ActorImage(props) {
-  const { portraitNumber } = props;
+  const { playerNumber } = props;
 
   //secont argument is null so it will be called only once
-  useEffect(() => console.log("ActorImage mounted", portraitNumber), []);
+  useEffect(() => console.log("ActorImage mounted", playerNumber), []);
 
   return (
     <img
       css={actor_image}
-      src={`./images/Actors/solid${portraitNumber}_front.jpg`}
+      src={`./images/Actors/solid${playerNumber}_front.jpg`}
     />
   );
 }

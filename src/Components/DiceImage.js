@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { css } from "@emotion/core";
 
@@ -29,7 +29,7 @@ export class DiceImage extends React.Component {
   }
 
   render() {
-    const { diceNumber, label, isPortrait } = this.props;
+    const { diceNumber, label = "placeholder", isPortrait } = this.props;
 
     return (
       <>

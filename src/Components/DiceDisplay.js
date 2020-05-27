@@ -20,7 +20,7 @@ const dice_display = css`
   height: 75px;
 `;
 
-export function DiceDisplay(props) {
+export function DiceDisplay() {
   return (
     <div css={dice_display}>
       {imageLoader().map(({ id, src, title, description }) => (

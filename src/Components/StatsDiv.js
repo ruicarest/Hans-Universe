@@ -4,6 +4,7 @@ import { css } from "@emotion/core";
 import _ from "lodash";
 
 import { StatsLabel } from "./StatsLabel";
+import GameContext from "../Stores/GameContext";
 
 const stats_div = css`
   display: flex;
@@ -16,13 +17,24 @@ const stats_div = css`
 `;
 
 export function StatsDiv(props) {
-  const { portraitNumber, statsMock } = props;
+  const { playerNumber } = props;
 
   return (
-    <div css={stats_div}>
-      {statsMock[portraitNumber - 1].stats.map(({ label, value }) => (
-        <StatsLabel key={_.uniqueId()} {...props} label={label} value={value} />
-      ))}
-    </div>
+    <GameContext.Consumer>
+      {(context) => (
+        <div css={stats_div}>
+          {context.playersState[playerNumber - 1].stats.map(
+            ({ label, value }) => (
+              <StatsLabel
+                key={_.uniqueId()}
+                {...props}
+                label={label}
+                value={value}
+              />
+            )
+          )}
+        </div>
+      )}
+    </GameContext.Consumer>
   );
 }

@@ -16,8 +16,8 @@ const actor_portrait = css`
 export function ActorPortrait(props) {
   return (
     <div css={actor_portrait}>
-      <StatsDiv {...props} />
-      <ActorImage {...props} />
+      <StatsDiv playerNumber={props.playerNumber} />
+      <ActorImage playerNumber={props.playerNumber} />
     </div>
   );
 }

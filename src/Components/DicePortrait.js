@@ -4,6 +4,8 @@ import { css } from "@emotion/core";
 
 import { DiceImage } from "./DiceImage";
 
+import GameContext from "../Stores/GameContext";
+
 const dice_portrait = css`
   display: flex;
   flex-direction: row;
@@ -18,11 +20,21 @@ const dice_portrait = css`
   height: 75px;
 `;
 
-export function DicePortrait(props) {
+export function DicePortrait() {
   return (
-    <div css={dice_portrait}>
-      <DiceImage diceNumber={props.statsMock[0].dicePortraitID} isPortrait />
-      <DiceImage diceNumber={props.statsMock[1].dicePortraitID} isPortrait />
-    </div>
+    <GameContext.Consumer>
+      {(context) => (
+        <div css={dice_portrait}>
+          <DiceImage
+            diceNumber={context.playersState[0].dicePortraitID}
+            isPortrait
+          />
+          <DiceImage
+            diceNumber={context.playersState[1].dicePortraitID}
+            isPortrait
+          />
+        </div>
+      )}
+    </GameContext.Consumer>
   );
 }
