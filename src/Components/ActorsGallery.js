@@ -22,7 +22,7 @@ const actor_thumbnail = css`
 `;
 
 export function ActorsGallery(props) {
-  const contextData = useContext(GameContext);
+  const { setActor } = useContext(GameContext);
 
   const loadimages = () => {
     const thumbnails = [];
@@ -31,7 +31,7 @@ export function ActorsGallery(props) {
         <img
           css={actor_thumbnail}
           key={_.uniqueId("tn_")}
-          onClick={contextData.setActor.bind(this, 1, i)}
+          onClick={setActor.bind(this, 0, i)}
           src={`./images/Actors/thumbnails/solid${i}_front_tn.jpg`}
         />
       );

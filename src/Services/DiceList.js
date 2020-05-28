@@ -1,4 +1,4 @@
-const images = [
+const DiceList = [
   {
     id: 1,
     src: "./images/Dice/1.jpg",
@@ -37,8 +37,8 @@ const images = [
   },
 ];
 
-function imageLoader() {
-  return images;
+function DiceListLoader() {
+  return DiceList;
 }
 
-export default imageLoader;
+export default DiceListLoader;

@@ -4,7 +4,7 @@ import { css } from "@emotion/core";
 
 import { DiceImage } from "./DiceImage";
 
-import imageLoader from "../Services/Images";
+import DiceListLoader from "../Services/DiceList";
 
 const dice_display = css`
   display: flex;
@@ -23,7 +23,7 @@ const dice_display = css`
 export function DiceDisplay() {
   return (
     <div css={dice_display}>
-      {imageLoader().map(({ id, src, title, description }) => (
+      {DiceListLoader().map(({ id, src, title, description }) => (
         <DiceImage key={id} diceNumber={id} label={description} />
       ))}
     </div>
