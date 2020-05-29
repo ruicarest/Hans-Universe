@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { css } from "@emotion/core";
 import _ from "lodash";
@@ -18,23 +18,22 @@ const stats_div = css`
 
 export function StatsDiv(props) {
   const { playerNumber } = props;
+  const { stats } = useContext(GameContext).playersState[playerNumber - 1];
 
   return (
-    <GameContext.Consumer>
-      {(context) => (
-        <div css={stats_div}>
-          {context.playersState[playerNumber - 1].stats.map(
-            ({ label, value }) => (
-              <StatsLabel
-                key={_.uniqueId()}
-                {...props}
-                label={label}
-                value={value}
-              />
-            )
-          )}
-        </div>
-      )}
-    </GameContext.Consumer>
+    <div css={stats_div}>
+      <StatsLabel
+        key={_.uniqueId()}
+        {...props}
+        label="DEF"
+        value={stats.defence}
+      />
+      <StatsLabel
+        key={_.uniqueId()}
+        {...props}
+        label="ATK"
+        value={stats.power}
+      />
+    </div>
   );
 }

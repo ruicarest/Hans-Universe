@@ -10,10 +10,7 @@ class GameContextProvider extends Component {
         MaxHP: 200,
         currentDiceID: 1,
         currentActor: 10,
-        stats: [
-          { label: "ATK", value: 10 },
-          { label: "DEF", value: 5 },
-        ],
+        stats: { power: 8, defence: 3 },
       },
       {
         playerNumber: 2,
@@ -21,10 +18,7 @@ class GameContextProvider extends Component {
         MaxHP: 180,
         currentDiceID: 4,
         currentActor: 5,
-        stats: [
-          { label: "ATK", value: 8 },
-          { label: "DEF", value: 3 },
-        ],
+        stats: { power: 8, defence: 3 },
       },
     ],
   };
