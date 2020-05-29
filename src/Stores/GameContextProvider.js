@@ -35,6 +35,20 @@ class GameContextProvider extends Component {
               playersState,
             });
           },
+          setPower: (playerNumber, power) => {
+            const playersState = Object.assign({}, this.state.playersState);
+            playersState[playerNumber].stats.power = power;
+            this.setState({
+              playersState,
+            });
+          },
+          setDefence: (playerNumber, defence) => {
+            const playersState = Object.assign({}, this.state.playersState);
+            playersState[playerNumber].stats.defence = defence;
+            this.setState({
+              playersState,
+            });
+          },
         }}
       >
         {this.props.children}
