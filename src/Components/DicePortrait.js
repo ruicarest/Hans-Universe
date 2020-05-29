@@ -25,8 +25,8 @@ export function DicePortrait() {
     <GameContext.Consumer>
       {({ playersState }) => (
         <div css={dice_portrait}>
-          <DiceImage diceNumber={playersState[0].dicePortraitID} isPortrait />
-          <DiceImage diceNumber={playersState[1].dicePortraitID} isPortrait />
+          <DiceImage diceNumber={playersState[0].currentDiceID} isPortrait />
+          <DiceImage diceNumber={playersState[1].currentDiceID} isPortrait />
         </div>
       )}
     </GameContext.Consumer>
