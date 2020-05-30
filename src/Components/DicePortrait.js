@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { css } from "@emotion/core";
 
@@ -21,14 +21,28 @@ const dice_portrait = css`
 `;
 
 export function DicePortrait() {
+  const { updatePlayer, playersState } = useContext(GameContext);
+
+  const rollDice = (seed) => {
+    const { diceList } = playersState[0];
+
+    let dicePosition = Math.floor(Math.random() * diceList.length);
+    let diceID = diceList[dicePosition];
+
+    updatePlayer(0, { currentDiceID: diceID });
+
+    if (seed == 0) {
+      return;
+    }
+
+    let newSeed = seed - 1;
+    setTimeout(rollDice.bind(this, newSeed), 50);
+  };
+
   return (
-    <GameContext.Consumer>
-      {({ playersState }) => (
-        <div css={dice_portrait}>
-          <DiceImage diceNumber={playersState[0].currentDiceID} isPortrait />
-          <DiceImage diceNumber={playersState[1].currentDiceID} isPortrait />
-        </div>
-      )}
-    </GameContext.Consumer>
+    <div css={dice_portrait} onClick={rollDice.bind(this, 5)}>
+      <DiceImage diceNumber={playersState[0].currentDiceID} isPortrait />
+      <DiceImage diceNumber={playersState[1].currentDiceID} isPortrait />
+    </div>
   );
 }
