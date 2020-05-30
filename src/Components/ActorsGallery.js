@@ -3,6 +3,8 @@ import _ from "lodash";
 
 import { css } from "@emotion/core";
 
+import ActorsListLoader from "../Services/ActorsList";
+
 import GameContext from "../Stores/GameContext";
 
 const actors_gallery = css`
@@ -21,18 +23,21 @@ const actor_thumbnail = css`
   }
 `;
 
-export function ActorsGallery(props) {
-  const { setActor } = useContext(GameContext);
+export function ActorsGallery() {
+  const { setNewActor } = useContext(GameContext);
+  const ActorsList = ActorsListLoader();
 
   const loadimages = () => {
     const thumbnails = [];
-    for (let i = 1; i < 18; i++) {
+    for (let i = 0; i < 2; i++) {
+      let { thumbnail } = ActorsList[i];
+
       thumbnails.push(
         <img
           css={actor_thumbnail}
           key={_.uniqueId("tn_")}
-          onClick={setActor.bind(this, 0, i)}
-          src={`./images/Actors/thumbnails/solid${i}_front_tn.jpg`}
+          onClick={setNewActor.bind(this, 0, i + 1)}
+          src={thumbnail}
         />
       );
     }

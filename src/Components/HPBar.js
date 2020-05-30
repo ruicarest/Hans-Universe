@@ -32,13 +32,16 @@ export function HPBar(props) {
   return (
     <GameContext.Consumer>
       {(context) => {
-        const { HP, MaxHP } = context.playersState[playerNumber - 1];
+        const { HP, currentActor } = context.playersState[playerNumber - 1];
 
         return (
           <div
             css={[hp_bar_container, playerNumber == 1 ? bottom_bar : top_bar]}
           >
-            <div css={hp_bar} style={{ width: (HP / MaxHP) * 100 + "%" }}></div>
+            <div
+              css={hp_bar}
+              style={{ width: (HP / currentActor.MaxHP) * 100 + "%" }}
+            ></div>
           </div>
         );
       }}

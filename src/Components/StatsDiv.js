@@ -18,7 +18,9 @@ const stats_div = css`
 
 export function StatsDiv(props) {
   const { playerNumber } = props;
-  const { stats } = useContext(GameContext).playersState[playerNumber - 1];
+  const { currentActor } = useContext(GameContext).playersState[
+    playerNumber - 1
+  ];
 
   return (
     <div css={stats_div}>
@@ -26,13 +28,13 @@ export function StatsDiv(props) {
         key={_.uniqueId()}
         {...props}
         label="DEF"
-        value={stats.defence}
+        value={currentActor.shield}
       />
       <StatsLabel
         key={_.uniqueId()}
         {...props}
         label="ATK"
-        value={stats.power}
+        value={currentActor.power}
       />
     </div>
   );

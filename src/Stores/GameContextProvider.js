@@ -1,24 +1,42 @@
 import React, { Component } from "react";
 import GameContext from "./GameContext";
 
+import { getActorByID } from "../Services/ActorsList";
+
 class GameContextProvider extends Component {
   state = {
     playersState: [
       {
         playerNumber: 1,
         HP: 100,
-        MaxHP: 200,
         currentDiceID: 1,
-        currentActor: 10,
-        stats: { power: 8, defence: 3 },
+        currentActor: {
+          id: 2,
+          src: "./images/Actors/solid2_front.jpg",
+          thumbnail: "./images/Actors/thumbnails/solid2_front_tn.jpg",
+          name: "Agirtado",
+          description: "2 speed",
+          power: 4,
+          shield: 3,
+          MaxHP: 100,
+        },
+        actorsList: [3, 4],
       },
       {
         playerNumber: 2,
         HP: 120,
-        MaxHP: 180,
         currentDiceID: 4,
-        currentActor: 5,
-        stats: { power: 8, defence: 3 },
+        currentActor: {
+          id: 1,
+          name: "Pakato",
+          description: "1 speed",
+          src: "./images/Actors/solid1_front.jpg",
+          thumbnail: "./images/Actors/thumbnails/solid1_front_tn.jpg",
+          MaxHP: 180,
+          power: 8,
+          shield: 4,
+        },
+        actorsList: [1, 2],
       },
     ],
   };
@@ -28,23 +46,20 @@ class GameContextProvider extends Component {
       <GameContext.Provider
         value={{
           playersState: this.state.playersState,
-          setActor: (playerNumber, actorID) => {
+          setNewActor: (playerNumber, actorID) => {
             const playersState = Object.assign({}, this.state.playersState);
-            playersState[playerNumber].currentActor = actorID;
+            playersState[playerNumber].currentActor = getActorByID(actorID);
+            console.log("RUI", playersState[playerNumber].currentActor);
             this.setState({
               playersState,
             });
           },
-          setPower: (playerNumber, power) => {
+          updatePlayer: (playerNumber, fieldsToChange) => {
             const playersState = Object.assign({}, this.state.playersState);
-            playersState[playerNumber].stats.power = power;
-            this.setState({
-              playersState,
-            });
-          },
-          setDefence: (playerNumber, defence) => {
-            const playersState = Object.assign({}, this.state.playersState);
-            playersState[playerNumber].stats.defence = defence;
+            playersState[playerNumber] = {
+              ...playersState[playerNumber],
+              ...fieldsToChange,
+            };
             this.setState({
               playersState,
             });

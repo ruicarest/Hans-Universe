@@ -21,9 +21,7 @@ export function ActorImage(props) {
       {({ playersState }) => (
         <img
           css={actor_image}
-          src={`./images/Actors/solid${
-            playersState[playerNumber - 1].currentActor
-          }_front.jpg`}
+          src={playersState[playerNumber - 1].currentActor.src}
         />
       )}
     </GameContext.Consumer>

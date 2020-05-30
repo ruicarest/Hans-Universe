@@ -1,19 +1,23 @@
 const ActorsList = [
   {
     id: 1,
-    src: "./images/Actors/solid1_front.jpg",
-    title: "Pakato",
+    name: "Pakato",
     description: "1 speed",
+    src: "./images/Actors/solid1_front.jpg",
+    thumbnail: "./images/Actors/thumbnails/solid1_front_tn.jpg",
+    MaxHP: 180,
     power: 8,
     shield: 4,
   },
   {
     id: 2,
     src: "./images/Actors/solid2_front.jpg",
-    title: "Agirtado",
+    thumbnail: "./images/Actors/thumbnails/solid2_front_tn.jpg",
+    name: "Agirtado",
     description: "2 speed",
-    power: 8,
-    shield: 4,
+    power: 4,
+    shield: 3,
+    MaxHP: 100,
   },
   {
     id: 3,
@@ -40,6 +44,10 @@ const ActorsList = [
     description: "6 speed",
   },
 ];
+
+export const getActorByID = (id) => {
+  return ActorsList.find((actor) => actor.id == id);
+};
 
 function ActorsListLoader() {
   return ActorsList;
