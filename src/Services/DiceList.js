@@ -41,4 +41,8 @@ function DiceListLoader() {
   return DiceList;
 }
 
+export const getDiceByID = (id) => {
+  return DiceList.find((dice) => dice.id == id);
+};
+
 export default DiceListLoader;

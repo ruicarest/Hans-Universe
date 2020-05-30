@@ -21,6 +21,7 @@ class GameContextProvider extends Component {
           MaxHP: 100,
         },
         actorsList: [3, 4],
+        diceList: [1, 2, 3, 4, 5, 6],
       },
       {
         playerNumber: 2,
@@ -37,6 +38,7 @@ class GameContextProvider extends Component {
           shield: 4,
         },
         actorsList: [1, 2],
+        diceList: [1, 2, 3, 4, 5, 6],
       },
     ],
   };
@@ -49,7 +51,6 @@ class GameContextProvider extends Component {
           setNewActor: (playerNumber, actorID) => {
             const playersState = Object.assign({}, this.state.playersState);
             playersState[playerNumber].currentActor = getActorByID(actorID);
-            console.log("RUI", playersState[playerNumber].currentActor);
             this.setState({
               playersState,
             });
