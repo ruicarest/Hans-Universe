@@ -15,34 +15,41 @@ const dice_portrait = css`
   border: 5px solid black;
   margin: 2px;
   padding: 2px;
-
-  width: max-width;
   height: 75px;
+`;
+
+const dice_div = css`
+  width: 75px;
 `;
 
 export function DicePortrait() {
   const { updatePlayer, playersState } = useContext(GameContext);
 
-  const rollDice = (seed) => {
-    const { diceList } = playersState[0];
+  const rollDice = (seed, playerNumber) => {
+    const { diceList } = playersState[playerNumber];
 
     let dicePosition = Math.floor(Math.random() * diceList.length);
     let diceID = diceList[dicePosition];
 
-    updatePlayer(0, { currentDiceID: diceID });
+    updatePlayer(playerNumber, { currentDiceID: diceID });
 
     if (seed == 0) {
       return;
     }
 
     let newSeed = seed - 1;
-    setTimeout(rollDice.bind(this, newSeed), 50);
+    setTimeout(rollDice.bind(this, newSeed, playerNumber), 100);
   };
 
   return (
-    <div css={dice_portrait} onClick={rollDice.bind(this, 5)}>
-      <DiceImage diceNumber={playersState[0].currentDiceID} isPortrait />
-      <DiceImage diceNumber={playersState[1].currentDiceID} isPortrait />
+    <div css={dice_portrait}>
+      <div css={dice_div} onClick={rollDice.bind(this, 20, 0)}>
+        <DiceImage diceNumber={playersState[0].currentDiceID} isPortrait />
+      </div>
+
+      <div css={dice_div} onClick={rollDice.bind(this, 20, 1)}>
+        <DiceImage diceNumber={playersState[1].currentDiceID} isPortrait />
+      </div>
     </div>
   );
 }
