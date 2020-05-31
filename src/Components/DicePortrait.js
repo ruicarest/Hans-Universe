@@ -23,10 +23,12 @@ const dice_div = css`
 `;
 
 export function DicePortrait() {
-  const { updatePlayer, playersState } = useContext(GameContext);
+  const { updatePlayer, playersState, changeState, currentState } = useContext(
+    GameContext
+  );
 
   const rollDice = (seed, playerNumber) => {
-    const { diceList } = playersState[playerNumber];
+    const { diceList, currentDiceCount } = playersState[playerNumber];
 
     let dicePosition = Math.floor(Math.random() * diceList.length);
     let diceID = diceList[dicePosition];
@@ -34,6 +36,11 @@ export function DicePortrait() {
     updatePlayer(playerNumber, { currentDiceID: diceID });
 
     if (seed == 0) {
+      updatePlayer(playerNumber, {
+        currentDiceCount: currentDiceCount + diceID,
+      });
+      //applyDamage
+      changeState();
       return;
     }
 
@@ -43,11 +50,21 @@ export function DicePortrait() {
 
   return (
     <div css={dice_portrait}>
-      <div css={dice_div} onClick={rollDice.bind(this, 20, 0)}>
+      <div
+        css={dice_div}
+        onClick={
+          currentState == "PLAYER1_ATTACK" ? rollDice.bind(this, 20, 0) : null
+        }
+      >
         <DiceImage diceNumber={playersState[0].currentDiceID} isPortrait />
       </div>
 
-      <div css={dice_div} onClick={rollDice.bind(this, 20, 1)}>
+      <div
+        css={dice_div}
+        onClick={
+          currentState == "PLAYER2_ATTACK" ? rollDice.bind(this, 20, 1) : null
+        }
+      >
         <DiceImage diceNumber={playersState[1].currentDiceID} isPortrait />
       </div>
     </div>

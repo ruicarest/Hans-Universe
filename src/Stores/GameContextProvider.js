@@ -3,8 +3,51 @@ import GameContext from "./GameContext";
 
 import { getActorByID } from "../Services/ActorsList";
 
+const GameStates = {
+  states: [
+    {
+      game_state_id: "INIT_GAME",
+      on: "PLAYER1_ATTACK",
+    },
+    {
+      game_state_id: "PLAYER1_ATTACK",
+      on: "PLAYER1_APPLYDAMAGE",
+    },
+    {
+      game_state_id: "PLAYER2_ATTACK",
+      on: "PLAYER2_APPLYDAMAGE",
+    },
+    {
+      game_state_id: "PLAYER1_APPLYDAMAGE",
+      on: "PLAYER2_ATTACK",
+    },
+    {
+      game_state_id: "PLAYER2_APPLYDAMAGE",
+      on: "PLAYER1_ATTACK",
+    },
+    {
+      game_state_id: "PLAYER1_DIE",
+      on: "GAME_FINISH",
+    },
+    {
+      game_state_id: "PLAYER2_DIE",
+      on: "GAME_FINISH",
+    },
+    {
+      game_state_id: "GAME_FINISH",
+      on: "GAME_RESET",
+    },
+    {
+      game_state_id: "GAME_RESET",
+      on: "GAME_INIT",
+    },
+  ],
+};
+
 class GameContextProvider extends Component {
   state = {
+    gameState: {},
+    currentState: "PLAYER1_ATTACK",
     playersState: [
       {
         playerNumber: 1,
@@ -48,6 +91,7 @@ class GameContextProvider extends Component {
       <GameContext.Provider
         value={{
           playersState: this.state.playersState,
+          currentState: this.state.currentState,
           setNewActor: (playerNumber, actorID) => {
             const playersState = Object.assign({}, this.state.playersState);
             playersState[playerNumber].currentActor = getActorByID(actorID);
@@ -64,6 +108,18 @@ class GameContextProvider extends Component {
             this.setState({
               playersState,
             });
+          },
+          changeState: () => {
+            const nextState = GameStates.states.find(
+              (state) => state.game_state_id == this.state.currentState
+            ).on;
+            console.log("Rui NextState :", nextState);
+            this.setState({
+              currentState: nextState,
+            });
+          },
+          applyDamage: (damage) => {
+            //TODO
           },
         }}
       >
