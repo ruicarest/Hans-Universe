@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { css } from "@emotion/core";
 
@@ -27,24 +27,16 @@ const top_bar = css`
 `;
 
 export function HPBar(props) {
+  const { playersState } = useContext(GameContext);
   const { playerNumber } = props;
+  const { HP, currentActor } = playersState[playerNumber - 1];
 
   return (
-    <GameContext.Consumer>
-      {(context) => {
-        const { HP, currentActor } = context.playersState[playerNumber - 1];
-
-        return (
-          <div
-            css={[hp_bar_container, playerNumber == 1 ? bottom_bar : top_bar]}
-          >
-            <div
-              css={hp_bar}
-              style={{ width: (HP / currentActor.MaxHP) * 100 + "%" }}
-            ></div>
-          </div>
-        );
-      }}
-    </GameContext.Consumer>
+    <div css={[hp_bar_container, playerNumber == 1 ? bottom_bar : top_bar]}>
+      <div
+        css={hp_bar}
+        style={{ width: (HP / currentActor.MaxHP) * 100 + "%" }}
+      ></div>
+    </div>
   );
 }
