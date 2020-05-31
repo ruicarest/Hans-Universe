@@ -27,8 +27,19 @@ export function DicePortrait() {
     GameContext
   );
 
+  const applyDamage = (playerNumber) => {
+    let enemyID = playerNumber == 1 ? 0 : 1;
+    const { currentActor } = playersState[playerNumber];
+    const { HP } = playersState[enemyID];
+
+    updatePlayer(enemyID, {
+      HP: HP - currentActor.power,
+    });
+    changeState();
+  };
+
   const rollDice = (seed, playerNumber) => {
-    const { diceList, currentDiceCount } = playersState[playerNumber];
+    const { diceList } = playersState[playerNumber];
 
     let dicePosition = Math.floor(Math.random() * diceList.length);
     let diceID = diceList[dicePosition];
@@ -36,11 +47,10 @@ export function DicePortrait() {
     updatePlayer(playerNumber, { currentDiceID: diceID });
 
     if (seed == 0) {
-      updatePlayer(playerNumber, {
-        currentDiceCount: currentDiceCount + diceID,
-      });
-      //applyDamage
-      changeState();
+      // updatePlayer(playerNumber, {
+      //   currentDiceCount: currentDiceCount + diceID,
+      // });
+      applyDamage(playerNumber);
       return;
     }
 

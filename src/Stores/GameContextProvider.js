@@ -11,18 +11,10 @@ const GameStates = {
     },
     {
       game_state_id: "PLAYER1_ATTACK",
-      on: "PLAYER1_APPLYDAMAGE",
-    },
-    {
-      game_state_id: "PLAYER2_ATTACK",
-      on: "PLAYER2_APPLYDAMAGE",
-    },
-    {
-      game_state_id: "PLAYER1_APPLYDAMAGE",
       on: "PLAYER2_ATTACK",
     },
     {
-      game_state_id: "PLAYER2_APPLYDAMAGE",
+      game_state_id: "PLAYER2_ATTACK",
       on: "PLAYER1_ATTACK",
     },
     {
@@ -53,6 +45,8 @@ class GameContextProvider extends Component {
         playerNumber: 1,
         HP: 100,
         currentDiceID: 1,
+        currentDamage: null,
+        currentDiceCount: 0,
         currentActor: {
           id: 2,
           src: "./images/Actors/solid2_front.jpg",
@@ -70,6 +64,8 @@ class GameContextProvider extends Component {
         playerNumber: 2,
         HP: 120,
         currentDiceID: 4,
+        currentDamage: null,
+        currentDiceCount: 0,
         currentActor: {
           id: 1,
           name: "Pakato",
