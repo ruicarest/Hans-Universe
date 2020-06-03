@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
-import { css } from "@emotion/core";
+import { css, keyframes } from "@emotion/core";
 
 import { DiceImage } from "./DiceImage";
 
@@ -10,19 +10,47 @@ const dice_portrait = css`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 
   background-color: white;
-  border: 5px solid black;
-  margin: 2px;
-  padding: 2px;
+  border: 5px solid white;
+
   height: 75px;
 `;
 
+const bounce = keyframes`
+  from, 0%, to {
+    border: 5px solid white;
+  }
+  from, 49%, to {
+    border: 5px solid white;
+  }
+  50%{
+    border: 5px solid green;
+  }
+  100%{
+    border: 5px solid green;
+  }
+`;
+
+const dice_selected = css`
+  animation: ${bounce} normal 1s infinite;
+`;
+
 const dice_div = css`
-  width: 75px;
+  display: flex;
+  align-items: center;
+
+  align-self: center;
+
+  width: 65px;
+  border: 5px solid white;
+  padding: 2px;
 `;
 
 export function DicePortrait() {
+  const [isPlayerTurn, setIsPlayerTurn] = useState(0);
+
   const { updatePlayer, playersState, changeState, currentState } = useContext(
     GameContext
   );
@@ -36,6 +64,12 @@ export function DicePortrait() {
       HP: HP - currentActor.power,
     });
     changeState();
+  };
+
+  const moveTurn = (playerNumber) => {
+    changeState();
+    setIsPlayerTurn(0);
+    rollDice(20, playerNumber);
   };
 
   const rollDice = (seed, playerNumber) => {
@@ -58,22 +92,24 @@ export function DicePortrait() {
     setTimeout(rollDice.bind(this, newSeed, playerNumber), 100);
   };
 
+  if (isPlayerTurn != 1 && currentState == "PLAYER1_ATTACK") {
+    setIsPlayerTurn(1);
+  } else if (isPlayerTurn != 2 && currentState == "PLAYER2_ATTACK") {
+    setIsPlayerTurn(2);
+  }
+
   return (
     <div css={dice_portrait}>
       <div
-        css={dice_div}
-        onClick={
-          currentState == "PLAYER1_ATTACK" ? rollDice.bind(this, 20, 0) : null
-        }
+        css={[dice_div, isPlayerTurn == 1 ? dice_selected : ""]}
+        onClick={isPlayerTurn == 1 ? moveTurn.bind(this, 0) : null}
       >
         <DiceImage diceNumber={playersState[0].currentDiceID} isPortrait />
       </div>
 
       <div
-        css={dice_div}
-        onClick={
-          currentState == "PLAYER2_ATTACK" ? rollDice.bind(this, 20, 1) : null
-        }
+        css={[dice_div, isPlayerTurn == 2 ? dice_selected : ""]}
+        onClick={isPlayerTurn == 2 ? moveTurn.bind(this, 1) : null}
       >
         <DiceImage diceNumber={playersState[1].currentDiceID} isPortrait />
       </div>
