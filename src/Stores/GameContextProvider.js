@@ -11,10 +11,18 @@ const GameStates = {
     },
     {
       game_state_id: "PLAYER1_ATTACK",
+      on: "PLAYER1_ROLLING",
+    },
+    {
+      game_state_id: "PLAYER1_ROLLING",
       on: "PLAYER2_ATTACK",
     },
     {
       game_state_id: "PLAYER2_ATTACK",
+      on: "PLAYER2_ROLLING",
+    },
+    {
+      game_state_id: "PLAYER2_ROLLING",
       on: "PLAYER1_ATTACK",
     },
     {

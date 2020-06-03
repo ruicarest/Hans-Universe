@@ -23,7 +23,7 @@ const dice_display = css`
 export function DiceDisplay() {
   return (
     <div css={dice_display}>
-      {DiceListLoader().map(({ id, src, title, description }) => (
+      {DiceListLoader().map(({ id, description }) => (
         <DiceImage key={id} diceNumber={id} label={description} />
       ))}
     </div>
