@@ -10,6 +10,8 @@ const actor_image = css`
   display: block;
 `;
 
+//filter: invert(80%);
+
 export function ActorImage(props) {
   const { playerNumber } = props;
 

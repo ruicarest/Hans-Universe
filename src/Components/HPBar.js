@@ -5,9 +5,8 @@ import { css } from "@emotion/core";
 import GameContext from "../Stores/GameContext";
 
 const hp_bar_container = css`
-  border: 5px solid black;
+  border: 1px solid gray;
   padding: 2px;
-  margin-bot: 5px;
 
   width: 100px;
   height: 20px;
