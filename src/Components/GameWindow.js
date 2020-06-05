@@ -14,9 +14,7 @@ const battle = css`
   display: flex;
   flex-direction: row;
   align-items: center;
-
   background-color: pink;
-
   width: min-content;
 `;
 

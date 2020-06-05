@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+DIR= cd ../images/Actors/smaller/
+JSON='../../../scripts/file.json'
+
+N=0
+for F in $(ls $DIR)
+do
+    N=$((N+1))
+    echo "{" >> $JSON
+    echo "id:${N}," >> $JSON
+    echo "src:\"${F}\"" >> $JSON
+    echo "}," >> $JSON
+done
+
+#for file in $files
+#do
+#  echo $(basename $file) 
+#done
+
+echo $files > filename.txt
+
+who="world";
+
+echo "Hello ${who}, $(whoami)!"
