@@ -29,7 +29,7 @@ export function ActorsGallery() {
 
   const loadimages = () => {
     const thumbnails = [];
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < 10; i++) {
       let { thumbnail } = ActorsList[i];
 
       thumbnails.push(

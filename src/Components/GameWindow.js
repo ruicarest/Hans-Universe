@@ -31,7 +31,7 @@ export default class GameWindow extends Component {
           <MidSection />
           <ActorPortrait playerNumber={2} />
         </div>
-        <DiceDisplay />
+        {!this.state.isDebug ? <DiceDisplay /> : <></>}
         {this.state.isDebug ? <ActorsGallery /> : <></>}
       </GameContextProvider>
     );
