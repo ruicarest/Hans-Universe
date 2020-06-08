@@ -52,7 +52,7 @@ class GameContextProvider extends Component {
       {
         playerNumber: 1,
         HP: 100,
-        currentDiceID: 1,
+        currentDiceID: 0,
         currentDamage: null,
         currentDiceCount: 0,
         currentActor: {
@@ -65,13 +65,19 @@ class GameContextProvider extends Component {
           shield: 3,
           MaxHP: 100,
         },
+        modifiers: {
+          power: 0,
+          shield: 0,
+          maxHP: 0,
+          speed: 0,
+        },
         actorsList: [3, 4],
-        diceList: [1, 2, 3, 4, 5, 6],
+        diceList: [6, 7, 8],
       },
       {
         playerNumber: 2,
         HP: 120,
-        currentDiceID: 4,
+        currentDiceID: 0,
         currentDamage: null,
         currentDiceCount: 0,
         currentActor: {
@@ -84,8 +90,14 @@ class GameContextProvider extends Component {
           power: 8,
           shield: 4,
         },
+        modifiers: {
+          power: 0,
+          shield: 0,
+          maxHP: 0,
+          speed: 0,
+        },
         actorsList: [1, 2],
-        diceList: [1, 2, 3, 4, 5, 6],
+        diceList: [5, 7, 8],
       },
     ],
   };
