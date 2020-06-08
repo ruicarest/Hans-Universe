@@ -3,6 +3,7 @@ import React, { useContext, useState } from "react";
 import { css, keyframes } from "@emotion/core";
 
 import { DiceImage } from "./DiceImage";
+import { getDiceByID } from "./../Services/DiceList";
 
 import GameContext from "../Stores/GameContext";
 
@@ -69,11 +70,11 @@ export function DicePortrait() {
   const moveTurn = (playerNumber) => {
     changeState();
     setIsPlayerTurn(0);
-    rollDice(20, playerNumber);
+    rollDice(8, playerNumber);
   };
 
   const rollDice = (seed, playerNumber) => {
-    const { diceList } = playersState[playerNumber];
+    const { diceList, modifiers } = playersState[playerNumber];
 
     let dicePosition = Math.floor(Math.random() * diceList.length);
     let diceID = diceList[dicePosition];
@@ -81,10 +82,18 @@ export function DicePortrait() {
     updatePlayer(playerNumber, { currentDiceID: diceID });
 
     if (seed == 0) {
-      // updatePlayer(playerNumber, {
-      //   currentDiceCount: currentDiceCount + diceID,
-      // });
-      applyDamage(playerNumber);
+      let dice = getDiceByID(diceID);
+
+      //on modifer
+      if (dice.type == "modifier") {
+        //modifers of the same type don't stack
+        updatePlayer(playerNumber, {
+          modifiers: { ...modifiers, ...dice.modifier },
+        });
+        rollDice(8, playerNumber);
+      } else {
+        applyDamage(playerNumber);
+      }
       return;
     }
 
@@ -104,14 +113,14 @@ export function DicePortrait() {
         css={[dice_div, isPlayerTurn == 1 ? dice_selected : ""]}
         onClick={isPlayerTurn == 1 ? moveTurn.bind(this, 0) : null}
       >
-        <DiceImage diceNumber={playersState[0].currentDiceID} isPortrait />
+        <DiceImage diceID={playersState[0].currentDiceID} isPortrait />
       </div>
 
       <div
         css={[dice_div, isPlayerTurn == 2 ? dice_selected : ""]}
         onClick={isPlayerTurn == 2 ? moveTurn.bind(this, 1) : null}
       >
-        <DiceImage diceNumber={playersState[1].currentDiceID} isPortrait />
+        <DiceImage diceID={playersState[1].currentDiceID} isPortrait />
       </div>
     </div>
   );
