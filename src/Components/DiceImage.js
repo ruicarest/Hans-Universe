@@ -2,6 +2,8 @@ import React from "react";
 
 import { css } from "@emotion/core";
 
+import { getDiceByID } from "./../Services/DiceList";
+
 const dice_image = css`
   max-width: 100%;
   max-height: 100%;
@@ -29,13 +31,15 @@ export class DiceImage extends React.Component {
   }
 
   render() {
-    const { diceNumber, label = "placeholder", isPortrait } = this.props;
+    const { diceID, label = "placeholder", isPortrait } = this.props;
+
+    const diceSrc = getDiceByID(diceID).src;
 
     return (
       <>
         <img
           css={dice_image}
-          src={`./images/Dice/${diceNumber}.jpg`}
+          src={diceSrc}
           onMouseEnter={this.handleEnter.bind(this)}
           onMouseLeave={this.handleLeave.bind(this)}
         />

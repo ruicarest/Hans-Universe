@@ -24,7 +24,7 @@ export function DiceDisplay() {
   return (
     <div css={dice_display}>
       {DiceListLoader().map(({ id, description }) => (
-        <DiceImage key={id} diceNumber={id} label={description} />
+        <DiceImage key={id} diceID={id} label={description} />
       ))}
     </div>
   );
