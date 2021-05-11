@@ -39,7 +39,7 @@
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
     "copy-webpack-plugin": "^5.1.1",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "react": "^16.11.0",
     "react-dom": "^16.11.0"
   }
